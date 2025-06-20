@@ -3,11 +3,39 @@ package Round;
 import Cards.Card;
 import Cards.CardsService;
 import Table.Table;
+import User.User;
 
 public class Round {
 
     private Card manilha;
     private Card startcard;
+    private int value = 1;
+    public User trucado;
+    public User winner;
+
+    public User getWinner() {
+        return winner;
+    }
+
+    public void setWinner(User winner) {
+        this.winner = winner;
+    }
+
+    public User getTrucado() {
+        return trucado;
+    }
+
+    public void setTrucado(User trucado) {
+        this.trucado = trucado;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
 
     public CardsService cardsService = new CardsService();
 

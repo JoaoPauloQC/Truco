@@ -32,6 +32,10 @@ public class MyHand {
         }
     }
 
+    public void dropcard(Card card){
+        hand.remove(card);
+    }
+
     public void printHand(){
         System.out.println(hand);
     }

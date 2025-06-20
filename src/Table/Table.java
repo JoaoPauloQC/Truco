@@ -4,6 +4,7 @@ import Cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Table {
 
@@ -22,6 +23,7 @@ public class Table {
     }
 
     public List<Card> getTablecards() {
+        System.out.println(tablecards.stream().map(c -> c.getName()).collect(Collectors.toList()));
         return tablecards;
     }
 }

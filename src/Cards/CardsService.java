@@ -4,6 +4,7 @@ import User.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CardsService {
 
@@ -20,6 +21,13 @@ public class CardsService {
         cards.add(new Ace());
         cards.add(new Two());
         cards.add(new Three());
+    }
+
+    public Card getRandomCard(){
+        Random random = new Random();
+
+
+        return cards.get(random.nextInt(7));
     }
 
 }

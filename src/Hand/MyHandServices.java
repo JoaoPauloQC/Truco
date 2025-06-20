@@ -12,4 +12,5 @@ public class MyHandServices {
         handsList.add(myHand);
     }
 
+
 }
