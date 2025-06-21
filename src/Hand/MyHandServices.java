@@ -12,5 +12,9 @@ public class MyHandServices {
         handsList.add(myHand);
     }
 
+    public void removeallhands(){
+
+        handsList.clear();
+    }
 
 }

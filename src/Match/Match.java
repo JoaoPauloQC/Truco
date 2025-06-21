@@ -21,6 +21,11 @@ public class Match {
     CardsService cardsService = new CardsService();
     MyHandServices myHandServices = new MyHandServices();
     UserService userService = new UserService();
+    public int user1points;
+    public int user2points;
+    public int miniuser1points;
+    public int miniuser2points;
+
     public Match( User user1, User user2){
         this.user1 = user1;
         this.user2 = user2;
@@ -33,6 +38,8 @@ public class Match {
     public void Start(){
         int turn = 0;
         while((user1.getPoints() < 12) && (user2.getPoints() < 12)){
+            showpoints();
+            myHandServices.removeallhands();
             for (User user : usersinmatch){
                 MyHand myHand = new MyHand(user);
                 myHand.addcards();
@@ -40,19 +47,29 @@ public class Match {
             }
             Round round = new Round(cardsService.getRandomCard());
             Table table = new Table();
+            round.setManilha();
+            int time = 0;
             while(true){
+
                 table.getTablecards();
-                System.out.println("Choose your option");
+                System.out.println( "User "  + (turn+1) + " Choose your option");
                 System.out.println(myHandServices.handsList.get(turn).hand.stream().map(c -> c.getName()).collect(Collectors.toList()));
                 int choice = scan.nextInt();
-
+                System.out.println(round.getManilha());
                 dropcard(choice, table, turn);
 
                 table.getTablecards();
 
+                if (calculateminipoints(turn,table)){
+                    System.out.println("Gonna break");
+                    addPointsReset();
+                    showMiniPoints();
+                    break;
+                }
                 myHandServices.handsList.get(turn).printHand();
                 if (turn ==1){
                     turn = 0;
+                    time += 1;
                 }
                 else{
                     turn =1;
@@ -102,6 +119,45 @@ public class Match {
 
 
     }
+
+    public boolean calculateminipoints(int turn, Table table ){
+        System.out.println("On calculate");
+        table.getTablecards();
+        if(turn == 1){
+            if(table.getTablecards().get(table.getTablecards().size()-2).getValue() > table.getTablecards().get(table.getTablecards().size()-1).getValue()){
+                miniuser1points += 1;
+            }
+            else if(table.getTablecards().get(table.getTablecards().size()-1).getValue() > table.getTablecards().get(table.getTablecards().size()-2).getValue()){
+                miniuser2points += 1;
+            }
+        }
+
+        if(miniuser1points == 2 || miniuser2points == 2){
+            
+            return true;
+        }
+        return false;
+    }
+
+    public void showMiniPoints(){
+        System.out.println("User 1 round points: "+ miniuser1points);
+        System.out.println("User 2 round points: "+ miniuser2points);
+    }
+    
+    
+    public void addPointsReset(){
+        if (miniuser1points == 2){
+            user1points += 1;
+        } else if (miniuser2points == 2) {
+            user2points += 1;
+        }
+    }
+    
+    public void showpoints(){
+        System.out.println("User1 points: "+ user1points);
+        System.out.println("User2 points: "+ user2points);
+    }
+
 
 
 }
