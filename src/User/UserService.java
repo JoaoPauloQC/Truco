@@ -17,7 +17,9 @@ public class UserService {
 
     public void getmatchusers(){
         Scanner scan =  new Scanner(System.in);
+        System.out.println("User 1:");
         User user1 = new User(scan.nextLine());
+        System.out.println("User 2:");
         User user2 = new User(scan.nextLine());
         matchusers.add(user1);
         matchusers.add(user2);
