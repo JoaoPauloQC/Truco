@@ -26,4 +26,8 @@ public class Table {
         System.out.println(tablecards.stream().map(c -> c.getName()).collect(Collectors.toList()));
         return tablecards;
     }
+
+    public void cleartablecards(){
+        tablecards.clear();
+    }
 }

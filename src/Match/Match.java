@@ -49,17 +49,19 @@ public class Match {
             Table table = new Table();
             round.setManilha();
             int time = 0;
+            turn = 0;
             while(true){
 
                 table.getTablecards();
                 System.out.println( "User "  + (turn+1) + " Choose your option");
                 System.out.println(myHandServices.handsList.get(turn).hand.stream().map(c -> c.getName()).collect(Collectors.toList()));
                 int choice = scan.nextInt();
-                System.out.println(round.getManilha());
+
                 dropcard(choice, table, turn);
 
                 table.getTablecards();
-
+                System.out.println("A manilha é" + round.getManilha());
+                System.out.println("A Carta inicial é" + round.getStartcard());
                 if (calculateminipoints(turn,table)){
                     System.out.println("Gonna break");
                     addPointsReset();
@@ -133,7 +135,7 @@ public class Match {
         }
 
         if(miniuser1points == 2 || miniuser2points == 2){
-            
+
             return true;
         }
         return false;
@@ -151,6 +153,8 @@ public class Match {
         } else if (miniuser2points == 2) {
             user2points += 1;
         }
+        miniuser1points = 0;
+        miniuser2points =0;
     }
     
     public void showpoints(){

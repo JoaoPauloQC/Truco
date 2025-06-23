@@ -47,6 +47,10 @@ public class Round {
         return manilha;
     }
 
+    public Card getStartcard() {
+        return startcard;
+    }
+
     public void setManilha() {
         this.manilha = cardsService.cards.stream().filter( c -> c.getValue() == (startcard.getValue()+1) ).findFirst().get();
     }

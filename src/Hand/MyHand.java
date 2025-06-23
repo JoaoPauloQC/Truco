@@ -29,6 +29,7 @@ public class MyHand {
         for(int i = 0 ; i < 3 ; i++) {
             hand.add(cardsService.cards.get(random.nextInt(6)));
             hand.get(i).setUser(user);
+            hand.get(i).setNaipe(random.nextInt(4));
         }
     }
 

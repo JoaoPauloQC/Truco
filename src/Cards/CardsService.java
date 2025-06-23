@@ -9,8 +9,9 @@ import java.util.Random;
 public class CardsService {
 
     public List<Card> cards = new ArrayList<>();
-
+    public  List<Card> allcards = new ArrayList<>();
     public CardsService (){
+
         cards.add(new Four());
         cards.add(new Five());
         cards.add(new Six());
@@ -21,7 +22,20 @@ public class CardsService {
         cards.add(new Ace());
         cards.add(new Two());
         cards.add(new Three());
+
     }
+
+    // public void generateallcards(){
+        //for (Card card : cards){
+          //  for (int i = 1; i < 5; i++){
+            //    Card cardtobeadd = card;
+              //  cardtobeadd.setNaipe(i);
+                //allcards.add(cardtobeadd);
+            //}
+
+
+        //}
+    //}
 
     public Card getRandomCard(){
         Random random = new Random();
